@@ -31,7 +31,6 @@ const signupSchema = z.object({
 });
 
 
-
 // Creating an object schema of login form
 const loginSchema = z.object({
     email: z
@@ -61,5 +60,6 @@ const deleteUserSchema = z.object({
         .max(10, { message: "Password must not be more than 10 characters" }),
 
 });
+
 
 module.exports = { signupSchema, loginSchema, deleteUserSchema };

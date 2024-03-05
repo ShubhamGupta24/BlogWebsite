@@ -69,5 +69,4 @@ const commentDeleteSchema = z.object({
         .max(200, { message: "user must not be more than 40 characters" }),
 
 })
-console.log("Hi from validator")
 module.exports = { blogPostSchema, commentSchema, blogDeleteSchema, commentDeleteSchema };
