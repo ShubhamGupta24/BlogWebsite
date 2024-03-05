@@ -60,8 +60,6 @@ userSchema.pre("save", async function () {
 userSchema.methods.generateToken = async function () {
   console.log("I am token");
   try {
-    console.log(typeof ((this._id).toString()))
-    // console.log("access kry", process.env.JWT_ACCESS_KEY)
     return jwt.sign(
       {
         userId: this._id.toString(),

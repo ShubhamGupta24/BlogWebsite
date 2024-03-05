@@ -101,7 +101,6 @@ const deleteUser = async (req, res) => {
             res.status(40).json({ message: "Invalid email or Password" })
         }
     } catch (error) {
-        console.log(error);
         res.status(500).json({ message: "Internal Server Error" })
     }
 
@@ -117,8 +116,6 @@ const user = async (req, res) => {
     try {
         // const userData = await User.find({});
         const userData = req.user;
-        console.log("Hi from user in auth controller", userData);
-        // return res.status(200).json({ msg: "userData will be provided soon" });
         return res.status(200).json({ userData });
     } catch (error) {
         console.log(` error from user route ${error}`);

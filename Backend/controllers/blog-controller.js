@@ -14,7 +14,6 @@ const blogPost = async (req, res) => {
             blogId: blogPosted._id.toString(),
         });
     } catch (error) {
-        console.error("Error posting blog:", error);
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }
@@ -24,10 +23,8 @@ const updateBlog = async (req, res) => {
     try {
         const { bloggerId, _id, content } = req.body
         const blog = await model.BlogPost.findById({ _id });
-        console.log(blog.bloggerId)
         if (blog && bloggerId === blog.bloggerId.toString()) {
             const updateBlog = await model.BlogPost.updateOne({ _id }, { content }, { new: true })
-            console.log("Hi from updateBlog", updateBlog)
             if (updateBlog) {
                 return res.status(200).json({ message: "Blog Updated", updateBlog })
             }
@@ -45,10 +42,8 @@ const commentPost = async (req, res) => {
     try {
         console.log(blogId)
         const findBlog = await model.BlogPost.findById({ _id: blogId });
-        console.log("Hi blog from commentPost", findBlog)
         if (findBlog) {
             const commentPosted = await model.CommentPost.create({ commenterId, blogId, comment })
-            console.log("Hi comment", commentPosted)
             if (commentPosted) {
                 return res.status(200).json({ message: "Comment pOSTED sUCCESSFULLY", commentPosted });
             }
@@ -57,7 +52,6 @@ const commentPost = async (req, res) => {
             return res.status(404).json({ message: "blog Not Found", findBlog });
         }
     } catch (error) {
-        console.error("Error from blogC", error)
         return res.status(500).json({ message: "Internal Server Error" })
     }
 }
@@ -90,14 +84,10 @@ const blogDelete = async (req, res) => {
     const blogId = _id;
     const findBlog = await model.BlogPost.findOne({ _id });
     const findComments = await model.CommentPost.find({ blogId })
-    console.log("hi find blog to be deleted", findBlog)
-
     try {
         if (findBlog) {
             const deletedBlog = await model.BlogPost.deleteOne({ _id });
             const deletedComment = findComments ? await model.CommentPost.deleteMany({ blogId }) : null;
-            // console.log("hi deletedBlog", deletedBlog)
-            // console.log("hi deletedComment", deletedComment)
             if (!deletedBlog) {
                 return res.status(404).json({ message: "Blog not found" });
             }
@@ -161,7 +151,6 @@ const blogReact = async (req, res) => {
     try {
         const { blogId, like, dislike } = req.body;
         const react = await model.BlogPost.findOneAndUpdate({ _id: blogId }, { like, dislike }, { new: true })
-        console.log(react)
         if (react) {
             res.status(200).json({ message: "Reaction updated", react })
         }

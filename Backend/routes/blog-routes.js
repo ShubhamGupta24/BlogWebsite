@@ -2,13 +2,9 @@ const express = require("express");
 
 const blogRouter = express.Router();
 const blogController = require("../controllers/blog-controller");
-// console.log("hi blog CA", blogController.blogPost)
 // middile-ware is validate 
 const validate = require("../middlewares/validate-middleware");
 const blogValidator = require("../validators/blog-validator");
-// console.log(blogValidator.blogPostSchema)
-
-// console.log(blogController.blogPost(req, res))
 // { blogPost, blogDelete, commentPost, commentDelete, getAllBlogByUser, getAllComments, getAllblogs, updateBlog, blogReact }
 blogRouter
     .route("/blogPost")
