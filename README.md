@@ -11,3 +11,4 @@ Installation
 To set up the backend server locally, follow these steps:
 
 Clone the repository:
+git clone https://github.com/ShubhamGupta24/BlogWebsite.git
