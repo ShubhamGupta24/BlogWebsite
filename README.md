@@ -24,8 +24,7 @@ Set up environment variables:
 Create a .env file in the root directory.
 Add the following variables:
 PORT=5000
-MONGODB_URI=mongodb+srv://heyshubham24:Shubham2409@cluster0.cwjosgd.mongodb.net/BlogWebsite?retryWrites=true&w=majority&appName=Cluster0
-JWT_SECRET=BlogWebsiteJwtSecretKey
+
 
 Start the server:
 npm start
